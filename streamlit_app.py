@@ -40,10 +40,13 @@ if submit:
             image.save(img_bytes, format="JPEG")
             img_bytes = img_bytes.getvalue()
             
-        # Build paths
-        folder = f"{disease}/{clinic}"
-        name1 = f"{folder}/{timestamp}_1_{img1.name}"
-        name2 = f"{folder}/{timestamp}_2_{img2.name}"
+            #Build path
+            name = f"{folder}/{timestamp}_img{i}.jpg"
+            try:
+                supabase.storage.from_("uploads").upload(name, img_bytes)
+            except Exception as e:
+                st.error(f"Failed to upload image {i}: {e}")
+                continue
 
         # Upload to Supabase
         supabase.storage.from_("Uploads").upload(name1, img1.getvalue())
