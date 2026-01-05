@@ -35,8 +35,8 @@ if submit:
         name2 = f"{folder}/{timestamp}_2_{img2.name}"
 
         # Upload to Supabase
-        supabase.storage.from_("uploads").upload(name1, img1)
-        supabase.storage.from_("uploads").upload(name2, img2)
+        supabase.storage.from_("uploads").upload(name1, img1.getvalue())
+        supabase.storage.from_("uploads").upload(name2, img2.getvalue())
 
         st.success("Uploaded!")
 
