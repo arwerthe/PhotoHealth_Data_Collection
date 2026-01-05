@@ -49,10 +49,6 @@ if submit:
                 st.error(f"Failed to upload image {i}: {e}")
                 continue
 
-        # Upload to Supabase
-        supabase.storage.from_("Uploads").upload(name1, img1.getvalue())
-        supabase.storage.from_("Uploads").upload(name2, img2.getvalue())
-
         st.success("Uploaded!")
 
         st.write("Data saved:")
