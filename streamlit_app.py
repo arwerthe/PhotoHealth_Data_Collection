@@ -26,10 +26,11 @@ with st.form("data"):
     submit = st.form_submit_button("Submit")
 
 if submit:
-    if not img1 or not img2:
-        st.error("Please upload two images!")
+    if not img1 or not img2 or not disease or not clinic:
+        st.error("Please fill all fields and upload 2 images!")
     else:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        folder = f"{disease}/{clinic}"
         # Process and upload images
         for i, img in enumerate([img1, img2], 1):
             # Open, convert to RGB, resize
@@ -39,7 +40,7 @@ if submit:
             img_bytes = io.BytesIO()
             image.save(img_bytes, format="JPEG")
             img_bytes = img_bytes.getvalue()
-            
+
             #Build path
             name = f"{folder}/{timestamp}_img{i}.jpg"
             try:
