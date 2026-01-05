@@ -1,9 +1,11 @@
 import streamlit as st
 import supabase
+from PIL import Image
+import io
 from datetime import datetime
 from supabase import create_client
 
-# --- Supabase config (get from supabase project) ---
+# --- Supabase config ---
 url = st.secrets["SUPABASE_URL"]
 key = st.secrets["SUPABASE_KEY"]
 supabase = create_client(url, key)
@@ -28,7 +30,16 @@ if submit:
         st.error("Please upload two images!")
     else:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
+        # Process and upload images
+        for i, img in enumerate([img1, img2], 1):
+            # Open, convert to RGB, resize
+            image = Image.open(img).convert("RGB").resize((224, 224))
+            
+            # Convert to bytes
+            img_bytes = io.BytesIO()
+            image.save(img_bytes, format="JPEG")
+            img_bytes = img_bytes.getvalue()
+            
         # Build paths
         folder = f"{disease}/{clinic}"
         name1 = f"{folder}/{timestamp}_1_{img1.name}"
