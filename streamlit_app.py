@@ -44,7 +44,7 @@ if submit:
             #Build path
             name = f"{folder}/{timestamp}_img{i}.jpg"
             try:
-                supabase.storage.from_("uploads").upload(name, img_bytes)
+                supabase.storage.from_("Uploads").upload(name, img_bytes)
             except Exception as e:
                 st.error(f"Failed to upload image {i}: {e}")
                 continue
