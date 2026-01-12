@@ -15,6 +15,10 @@ st.write("Please Enter Patient Information")
 
 # Form
 with st.form("data"):
+    
+    img1 = st.file_uploader("Image 1", type=["png","jpg","jpeg"])
+    img2 = st.file_uploader("Image 2", type=["png","jpg","jpeg"])
+
     disease = st.text_input("Disease state")
     clinic = st.text_input("Clinic")
     age = st.number_input("Age", min_value=0, max_value=120)
