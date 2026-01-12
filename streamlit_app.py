@@ -15,7 +15,7 @@ st.write("Please Enter Patient Information")
 
 # Form
 with st.form("data"):
-    
+
     img1 = st.file_uploader("Image 1", type=["png","jpg","jpeg"])
     img2 = st.file_uploader("Image 2", type=["png","jpg","jpeg"])
 
@@ -23,10 +23,7 @@ with st.form("data"):
     clinic = st.text_input("Clinic")
     age = st.number_input("Age", min_value=0, max_value=120)
     sex = st.selectbox("Sex", ["M", "F", "Other"])
-    
-    img1 = st.file_uploader("Image 1", type=["png","jpg","jpeg"])
-    img2 = st.file_uploader("Image 2", type=["png","jpg","jpeg"])
-    
+
     submit = st.form_submit_button("Submit")
 
 if submit:
